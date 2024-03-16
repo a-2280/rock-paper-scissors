@@ -18,42 +18,66 @@ function playRound(playerSelection, computerSelection) {
     
     if (playerSelection === computerSelection) {
         if ( playerScore === computerScore) {
-            return `Tie.    Player: ${playerScore}  Computer: ${computerScore}`;
-        } else if (playerScore > computerScore){
-            return `You win!    Player: ${playerScore}  Computer: ${computerScore}`;
-        } else {
-            return `You lose.    Player: ${playerScore}  Computer: ${computerScore}`;
-        }
+            alert('Tie');
+        };
     } else if (playerSelection === 'Rock' && computerSelection === 'Scissors' || playerSelection === 'Scissors' && computerSelection === 'Paper' || playerSelection === 'Paper' && computerSelection === 'Rock') {
         playerScore++;
-        if ( playerScore === computerScore) {
-            return `Tie.    Player: ${playerScore}  Computer: ${computerScore}`;
-        } else if (playerScore > computerScore){
-            return `You win!    Player: ${playerScore}  Computer: ${computerScore}`;
-        } else {
-            return `You lose.    Player: ${playerScore}  Computer: ${computerScore}`;
-        }
+        alert('You win this round!');
     } else {
         computerScore++;
-        if ( playerScore === computerScore) {
-            return `Tie.    Player: ${playerScore}  Computer: ${computerScore}`;
-        } else if (playerScore > computerScore){
-            return `You win!    Player: ${playerScore}  Computer: ${computerScore}`;
-        } else {
-            return `You lose.    Player: ${playerScore}  Computer: ${computerScore}`;
-        }
+        alert('The computer wins this round.')
     }
+    
+    updateScoreboard();
+
+    if (playerScore === 5) {
+        setTimeout(function() {
+            alert('You win!');
+            location.reload();
+        }, 100);
+    } else if (computerScore === 5) {
+        setTimeout(function() {
+            alert('Computer wins.');
+            location.reload();
+        }, 100);
+    };
 };
+
+//Function to update the scoreboard
+function updateScoreboard() {
+    document.getElementById("playerScore").textContent = playerScore;
+    document.getElementById("computerScore").textContent = computerScore;
+}
 
 //Plays 5 round of Rock Paper Scissors
-function playGame() {
-    for (let i = 0; i < 5; i++) {
-        const fiveTimes = playRound(prompt(), getComputerChoice());
-        console.log(fiveTimes);
-        if (i === 4) {
-            return fiveTimes;
-        }
-    }
-};
+// function playGame() {
+//     for (let i = 0; i < 5; i++) {
+//         const fiveTimes = playRound(prompt(), getComputerChoice());
+//         console.log(fiveTimes);
+//         if (i === 4) {
+//             return fiveTimes;
+//         }
+//     }
+// };
 
-console.log(playGame());
+//Event listeners for options
+document.getElementById("rock").addEventListener("click", function() {
+    let playerSelection = 'Rock';
+    let computerSelection = getComputerChoice();
+    let result = playRound(playerSelection, computerSelection);
+    return result;
+});
+
+document.getElementById("paper").addEventListener("click", function() {
+    let playerSelection = 'Paper';
+    let computerSelection = getComputerChoice();
+    let result = playRound(playerSelection, computerSelection);
+    return result;
+    
+});document.getElementById("scissors").addEventListener("click", function() {
+    let playerSelection = 'Scissors';
+    let computerSelection = getComputerChoice();
+    let result = playRound(playerSelection, computerSelection);
+    return result;
+});
+
