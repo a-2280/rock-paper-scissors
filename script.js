@@ -30,15 +30,15 @@ function playRound(playerSelection, computerSelection) {
     
     updateScoreboard();
 
-    if (playerScore === 5) {
+    if (playerScore === 3) {
         setTimeout(function() {
             alert('You win!');
             location.reload();
         }, 100);
-    } else if (computerScore === 5) {
+    } else if (computerScore === 3) {
         setTimeout(function() {
             alert('Computer wins.');
-            location.reload();
+            location.reload();gigig
         }, 100);
     };
 };
